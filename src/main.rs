@@ -184,6 +184,10 @@ fn install() -> Result<()> {
         let schema = format!("{base}.custom-keybinding:{path}");
         gs(&["set", &schema, "name", name]);
         gs(&["set", &schema, "command", &command]);
+        // gsd-media-keys only (re)grabs a key when the value changes, and gives
+        // up for good if the grab failed (e.g. the key was still taken), so
+        // always clear it first.
+        gs(&["set", &schema, "binding", ""]);
         gs(&["set", &schema, "binding", binding]);
         println!("✓ хоткей GNOME: {label}");
     }

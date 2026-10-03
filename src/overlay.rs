@@ -1407,7 +1407,7 @@ pub fn run(image: PathBuf, video: bool) -> Result<()> {
                 })
                 .ok();
             #[cfg(debug_assertions)]
-            if let Ok(script) = std::env::var("CLIPVIBE_DEMO") {
+            if let Ok(script) = std::env::var("SHOTVIBE_DEMO") {
                 demo(window, script, cx);
             }
         });
@@ -1419,7 +1419,7 @@ pub fn run(image: PathBuf, video: bool) -> Result<()> {
 #[cfg(debug_assertions)]
 fn demo(window: gpui::WindowHandle<Overlay>, script: String, cx: &mut App) {
     cx.spawn(async move |cx| {
-        let ms = std::env::var("CLIPVIBE_DEMO_MS")
+        let ms = std::env::var("SHOTVIBE_DEMO_MS")
             .ok()
             .and_then(|v| v.parse().ok())
             .unwrap_or(600);

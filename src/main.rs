@@ -91,6 +91,11 @@ fn shoot(args: &[String]) -> Result<()> {
 }
 
 fn capture_and_show(video: bool) -> Result<()> {
+    // Debug builds can show the overlay over a given image (for demos/README).
+    #[cfg(debug_assertions)]
+    if let Ok(image) = std::env::var("SHOTVIBE_IMAGE") {
+        return overlay::run(image.into(), video);
+    }
     let shot = capture::screenshot()?;
     let dir = dirs::cache_dir()
         .unwrap_or_else(std::env::temp_dir)

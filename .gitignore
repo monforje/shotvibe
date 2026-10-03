@@ -1,0 +1,5 @@
+/target
+
+# Local linker workaround (see README), not for other machines
+/.linkshim
+/.cargo
